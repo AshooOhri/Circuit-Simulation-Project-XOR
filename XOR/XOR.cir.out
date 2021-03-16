@@ -1,0 +1,29 @@
+* c:\spb_data\esim-workspace\xor\xor.cir
+
+* u3  net-_u1-pad1_ net-_u1-pad3_ net-_u3-pad3_ nand_gate
+* u2  net-_u1-pad3_ net-_u1-pad2_ net-_u2-pad3_ nand_gate
+* u4  net-_u3-pad3_ net-_u2-pad3_ in nand_gate
+* u1  net-_u1-pad1_ net-_u1-pad2_ net-_u1-pad3_ nand_gate
+v1  in net-_u1-pad1_ pulse(0 5 0 0.001n 0.001n 5n 10n)
+v2  net-_u1-pad2_ in pulse(0 5 0 0.001n 0.001n 10n 20n)
+a1 [net-_u1-pad1_ ] [net-_u1-pad3_ ] [net-_u3-pad3_ ] u3
+a2 [net-_u1-pad3_ ] [net-_u1-pad2_ ] [net-_u2-pad3_ ] u2
+a3 [net-_u3-pad3_ ] [net-_u2-pad3_ ] [in ] u4
+a4 [net-_u1-pad1_ ] [net-_u1-pad2_ ] [net-_u1-pad3_ ] u1
+* Schematic Name:                             nand_gate, NgSpice Name: nand_gate
+.model u3 nand_gate(rise_delay=1 fall_delay=1 input_load=1 instance_id=3 ) 
+* Schematic Name:                             nand_gate, NgSpice Name: nand_gate
+.model u2 nand_gate(rise_delay=1 fall_delay=1 input_load=1 instance_id=2 ) 
+* Schematic Name:                             nand_gate, NgSpice Name: nand_gate
+.model u4 nand_gate(rise_delay=1 fall_delay=1 input_load=1 instance_id=4 ) 
+* Schematic Name:                             nand_gate, NgSpice Name: nand_gate
+.model u1 nand_gate(rise_delay=1 fall_delay=1 input_load=1 instance_id=1 ) 
+.tran 1e-00 10e-00 0e-00
+
+* Control Statements 
+.control
+run
+print allv > plot_data_v.txt
+print alli > plot_data_i.txt
+.endc
+.end

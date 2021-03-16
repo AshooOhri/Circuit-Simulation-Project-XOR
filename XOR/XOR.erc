@@ -1,0 +1,7 @@
+ERC report (3/16/2021 10:28:42 PM, Encoding UTF8 )
+
+***** Sheet /
+ErrType(8): Global label not connected to any other global label
+    @ (196.85 mm,88.90 mm): Global label OUT is not connected to any other global label.
+
+ ** ERC messages: 1  Errors 0  Warnings 1
